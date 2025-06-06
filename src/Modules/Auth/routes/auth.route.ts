@@ -114,27 +114,12 @@ export class AuthRoute implements Routes {
          *                       type: string
          *                     email:
          *                       type: string
-         *                     firstName:
-         *                       type: string
-         *                     lastName:
-         *                       type: string
-         *                     roleName:
-         *                       type: string
          *                     status:
          *                       type: string
          *                     accessToken:
          *                       type: string
          *                     refreshToken:
          *                       type: string
-         *                     profileImage:
-         *                       type: object
-         *                       properties:
-         *                         _id:
-         *                           type: string
-         *                         filename:
-         *                           type: string
-         *                         url:
-         *                           type: string
          *                         
          *       401:
          *         description: Invalid credentials or account locked

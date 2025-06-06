@@ -16,7 +16,6 @@ import i18next from './utils/i18n';
 import i18nextMiddleware from 'i18next-http-middleware';
 import swaggerUi from 'swagger-ui-express';
 import { swaggerSpec } from './utils/swagger';
-import { connectRedis } from './utils/redis';
 
 
 
@@ -62,7 +61,6 @@ export class App {
 
     public async listen() {
         try {
-            await connectRedis();
             await new Promise((resolve, reject) => {
                 this.httpServer.listen(this.port, () => {
                     console.log(`==========================================`);

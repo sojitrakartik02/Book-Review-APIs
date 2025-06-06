@@ -1,5 +1,5 @@
 import { Document, FlattenMaps, Types } from "mongoose";
-import userStatus from '../../userManagement/constant/userStatus.json'
+import userStatus from '../constant/status.json'
 import { TFunction } from "i18next";
 
 
@@ -50,9 +50,6 @@ export interface IUser {
     isRememberMe: boolean
 
 
-    inviteStatus?: (typeof userStatus.inviteStatuses)[number]
-    invitedAt: Date
-    acceptedInviteAt: Date
     status?: (typeof userStatus.statuses)[number]
 
 }
@@ -62,7 +59,7 @@ export interface IUser {
 
 export interface DataStoredInToken {
     _id: string;
-    role: string;
+
     email: string;
     passwordHash: string;
     sessionId: string;
@@ -82,7 +79,6 @@ export interface GetAllUsersParams {
     page?: number;
     limit?: number;
     search?: string;
-    roleFilter?: string;
     sortBy?: string;
     sortOrder?: string;
     filters?: Record<string, any>;

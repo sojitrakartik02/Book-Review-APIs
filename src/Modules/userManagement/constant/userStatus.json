@@ -1,7 +1,0 @@
-{
-  "statuses": ["Active", "Inactive", "Deactivated"],
-  "inviteStatuses": ["WaitingToAccept", "Accept", "Deactivated"],
-  "notificationPreference": ["email", "sms", "inApp"],
-  "sendEmail": ["Admin", "Staff", "BA", "Sales"],
-  "Role": ["Super Admin", "Admin", "Staff", "Supervisor", "Labour"]
-}

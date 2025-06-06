@@ -4,7 +4,8 @@
     "string.empty": "{{field}} is empty",
     "any.required": "{{field}} is required",
     "string.length": "{{field}} must be {{limit}} characters long",
-    "string.pattern.base": "Invalid {{field}} format"
+    "string.pattern.base": "Invalid {{field}} format",
+    "string.min": "{{field}} must be at least {{limit}} characters long"
   },
 
   "General": {
@@ -31,25 +32,10 @@
     "errorDeleting": "Error deleting {{field}}",
     "already_exist": "{{field}} already exists",
     "sessionExpired": "Session has expired. Please log in again.",
-    "profileImage": "ProfileImage Id",
     "Id": "id",
     "Property": "field",
     "rate_limit_exceeded": "Too many requests from this IP, please try again later.",
-    "refreshToken": "refreshToken",
-    "request_too_large": "Request size exceeds the maximum allowed size of {{size}} MB",
-    "invalid_file_type": "Invalid file type for {{field}}",
-    "invalid_screenshot_type": "Invalid file type for {{field}}; only images are allowed",
-    "invalid_video_type": "Invalid file type for {{field}}; only video or audio formats are allowed",
-    "invalid_specific_file_type": "Invalid file type for {{type}}",
-    "file_too_large": "{{field}} exceeds the maximum allowed size of {{size}} MB",
-    "upload_error": "File upload error",
-    "no_details": "No additional details available",
-    "unexpected_field": "Unexpected field '{{field}}' in upload",
-    "unexpected_field_details": "Field '{{field}}' is not allowed in this upload request",
-    "file_count_exceeded": "Too many files uploaded for '{{field}}'",
-    "file_count_exceeded_details": "Maximum allowed files for '{{field}}' is {{max}}",
-    "file_too_large_details": "Maximum file size allowed is {{size}} MB",
-    "multer_error": "Upload failed due to error: {{error}}"
+    "refreshToken": "refreshToken"
   },
   "User": {
     "rate_limit_exceeded_Login": "Too many login attempts, please try again later",
@@ -86,102 +72,27 @@
     "passwordSpecialChar": "one special character (@#$%^&*!.)",
     "token": "Token",
     "match": "match",
-    "AddressLine1": "address line 1",
-    "AddressLine2": "address line 2",
-    "city": "city",
-    "state": "state",
-    "zipcode": "zipcode",
     "userName": "username",
     "fullName": "full name",
-    "adminLevel": "admin level",
-    "admin": "Admin",
     "AccountLock": "Your account has been locked due to multiple failed attempts. Please reset your password to continue.",
     "userDelete": "Cannot delete {{field}} — User is currently added to projects.",
     "refresh_success": "Access token refreshed successfully",
     "mustAcceptTerms": "mustAcceptTerms",
-    "alreadyDeactivated": "User is already deactivated.",
-    "alreadyINACTIVE": "User is already inactivated.",
-    "alreadyActive": "User is already active.",
-    "deactivatedSuccess": "User has been successfully deactivated.",
-    "activatedSuccess": "User has been successfully activated.",
-    "invalidStatus": "invalidStatus",
-    "changeStatus": "status has been successfully update"
+    "changeStatus": "status has been successfully update",
+    "add_success": "Successfully Signup"
   },
-  "Role": {
-    "role": "Role",
-    "permissions": "Permissions",
-    "invalid_role": "The role '{{name}}' is not valid",
-    "invalid_role_id": "Invalid {{field}} ID",
-    "create_success": "Successfully created {{field}}",
-    "get_success": "Successfully fetched {{field}}",
-    "get_all_success": "Successfully fetched all {{field}}",
-    "update_success": "Successfully updated {{field}}",
-    "delete_success": "Successfully deleted {{field}}",
-    "not_found": "{{field}} not found",
-    "already_exist": "{{field}} already exists",
-    "permission_denied": "You do not have permission to perform this action",
-    "invalid_permissions": "One or more permissions are invalid"
+
+  "Book": {
+    "book": "Book",
+    "succ_added": "Book added successfully",
+    "succ_fetched": "Book fetched successfully",
+    "succ_search": "Books search successful"
   },
-  "Notification": {
-    "notification": "Notification"
-  },
-  "Project": {
-    "project": "Project",
-    "assignedProjectManager": "assigned project manager",
-    "clients": "clients",
-    "teamMember": "team member"
-  },
-  "Draft": {
-    "draft": "draft",
-    "Step": "step",
-    "projectName": "Project name is required"
-  },
-  "Upload": {
-    "imagesAdded": "Files uploaded successfully",
-    "images_deleted": "Images deleted successfully",
-    "partial_success": "Some files uploaded successfully, but some failed",
-    "moduleName": "Module Name",
-    "file": "File",
-    "upload_failed": "upload failed",
-    "tempFile": "temp file",
-    "no_file_uploaded": "Please upload a file",
-    "image": "image",
-    "video": "video",
-    "screenshot": "screenshot",
-    "document": "document",
-    "certificate": "certificate",
-    "pendingDocuments": "pendingDocuments"
-  },
-  "userPermission": {
-    "granted": "Permissions granted successfully",
-    "revoked": "Permissions revoked successfully",
-    "restricted": "Permissions restricted successfully",
-    "remove_from_restricted_first": "Permission is restricted. Please remove it from restricted permissions first.",
-    "revoke_from_granted_first": "Permission is granted. Please revoke it from granted permissions before restricting.",
-    "none_to_revoke": "No matching permissions found to revoke.",
-    "none_to_revoke_restricted": "No matching restricted permissions found to revoke."
-  },
-  "Labour": {
-    "labour": "Labour",
-    "verification": "Successfully Labour verify",
-    "verificationStatus": "verificationStatus",
-    "rejectionReasonRequired": "rejectionReasonRequired",
-    "alreadyStatus": "Status has been is already"
-  },
-  "DocumentRequest": {
-    "document_request": "document_request",
-    "email_sent_to": "Email",
-    "existing_request": "This request is already sent"
-  },
-  "LabourAssignment": {
-    "labourAssignment": "Labour Assignment",
-    "conflict": "Labourer is already assigned during this period",
-    "invalid_dates": "Invalid assignment dates",
-    "invalid_shift": "Invalid shift value",
-    "invalid_status": "Invalid assignment status",
-    "invalid_documents": "One or more documents are invalid"
-  },
-  "Task": {
-    "task": "Task"
+  "Review": {
+    "review": "Review",
+    "succ_added": "Review added successfully",
+    "succ_updated": "Review updated successfully",
+    "succ_deleted": "Review deleted successfully",
+    "already_exists": "Review already exists for this user and book"
   }
 }

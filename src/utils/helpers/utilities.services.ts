@@ -1,20 +1,11 @@
 import { HttpException } from '../exceptions/httpException';
 import { DataStoredInToken, IUser } from '../../Modules/Auth/interfaces/auth.interface';
-import { Types } from 'mongoose';
-import { RoleDocumnet } from '../../Modules/Role/interfaces/role.interface';
 import { JsonWebTokenError, sign, TokenExpiredError, verify } from 'jsonwebtoken';
 import { hash, compare } from 'bcryptjs';
 import { SECRET_KEY, REFRESH_TOKEN, REFRESH_TOKEN_EXPIRY } from '../../config/index';
-import {
-    registerDecorator,
-    ValidationOptions,
-    ValidationArguments,
-} from 'class-validator';
-import dayjs from 'dayjs';
 import { status } from './api.responses';
 import crypto from 'crypto'
 import { TFunction } from 'i18next';
-import { AvailableStatusEnum, VerificationStatusEnum } from 'Modules/Labour/interfaces/labour.interface';
 
 export const removenull = (obj: Record<string, any>) => {
     for (const propName in obj) {
@@ -51,13 +42,9 @@ export const generateOTP = (length: number): string => {
 
 
 export const createJWT = (user: IUser, expiresIn): { accessToken: string; refreshToken: string, sessionId: string } => {
-    const roleId = user.roleId;
     const sessionId = require('uuid').v4()
     const dataStoredInToken: DataStoredInToken = {
         _id: user._id.toString(),
-        role: roleId instanceof Types.ObjectId
-            ? roleId.toString()
-            : (roleId as RoleDocumnet)._id.toString(),
         email: user.email,
         passwordHash: user.accountSetting.passwordHash,
         sessionId
@@ -115,17 +102,6 @@ export const comparePassword = async (password: string, hash: string): Promise<b
     return compare(password, hash);
 };
 
-// Helper function to get enum key by value:
-export function getKeyByValue<T>(obj: T, value: string): keyof T | undefined {
-    return (Object.keys(obj) as (keyof T)[]).find(key => obj[key] === value);
-}
-
-export function getVerificationStatusKeyFromQuery(queryValue?: string) {
-    if (!queryValue) return undefined;
-    const key = (Object.keys(VerificationStatusEnum) as Array<keyof typeof VerificationStatusEnum>)
-        .find(k => VerificationStatusEnum[k].toLowerCase().startsWith(queryValue.toLowerCase()));
-    return key;
-}
 
 
 
@@ -176,132 +152,3 @@ export function parseDurationToMs(duration: string): number {
     return value * multipliers[unit];
 }
 
-
-
-export function IsNotPastDate(validationOptions?: ValidationOptions) {
-    return function (object: Object, propertyName: string) {
-        registerDecorator({
-            name: 'isNotPastDate',
-            target: object.constructor,
-            propertyName: propertyName,
-            options: validationOptions,
-            validator: {
-                validate(value: Date) {
-                    if (!value) return true;
-                    return dayjs(value).isSame(dayjs(), 'day') || dayjs(value).isAfter(dayjs());
-                },
-                defaultMessage(args: ValidationArguments) {
-                    return `${args.property} should not be in the past`;
-                },
-            },
-        });
-    };
-}
-
-/**
- * Ensure endDate is after startDate
- */
-export function IsAfterDate(property: string, validationOptions?: ValidationOptions) {
-    return function (object: Object, propertyName: string) {
-        registerDecorator({
-            name: 'isAfterDate',
-            target: object.constructor,
-            propertyName,
-            options: validationOptions,
-            validator: {
-                validate(value: Date, args: ValidationArguments) {
-                    const relatedValue = (args.object as any)[property];
-                    if (!value || !relatedValue) return true;
-                    return dayjs(value).isAfter(dayjs(relatedValue));
-                },
-                defaultMessage(args: ValidationArguments) {
-                    return `${args.property} must be after ${property}`;
-                },
-            },
-        });
-    };
-}
-
-/**
- * @param input 
- * @returns validated string
- */
-
-export function sanitiseString(input?: string): string {
-    return input?.replace(/[^a-zA-Z0-9 ]/g, '');
-}
-
-
-
-
-
-const algorithm = 'aes-256-cbc';
-const key = crypto.scryptSync(SECRET_KEY, 'salt', 32);
-const iv = Buffer.alloc(16, 0);
-
-export function encrypt(text: string): string {
-
-    const cipher = crypto.createCipheriv(algorithm, key, iv);
-    let encrypted = cipher.update(text, 'utf8', 'hex');
-    encrypted += cipher.final('hex');
-
-    return encrypted;
-}
-
-export function decrypt(encryptedText: string): string {
-    const decipher = crypto.createDecipheriv(algorithm, key, iv);
-    let decrypted = decipher.update(encryptedText, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    return decrypted;
-}
-
-
-
-// import crypto from "crypto";
-
-// const algorithm = "aes-256-cbc";
-// const ivLength = 16;
-
-// export function encrypt(text: string, password: string): string {
-//     const iv = crypto.randomBytes(ivLength);
-//     const key = crypto.scryptSync(password, "salt", 32);
-//     const cipher = crypto.createCipheriv(algorithm, key, iv);
-//     const encrypted = Buffer.concat([cipher.update(text, "utf8"), cipher.final()]);
-//     return iv.toString("hex") + ":" + encrypted.toString("hex");
-// }
-
-// export function decrypt(encrypted: string, password: string): string {
-//     const [ivHex, encryptedHex] = encrypted.split(":");
-//     const iv = Buffer.from(ivHex, "hex");
-//     const encryptedText = Buffer.from(encryptedHex, "hex");
-//     const key = crypto.scryptSync(password, "salt", 32);
-//     const decipher = crypto.createDecipheriv(algorithm, key, iv);
-//     const decrypted = Buffer.concat([decipher.update(encryptedText), decipher.final()]);
-//     return decrypted.toString("utf8");
-// }
-
-
-// // utils/crypto.util.ts
-// import crypto from 'crypto';
-
-// const algorithm = 'aes-256-cbc';
-// const iv = crypto.randomBytes(16);
-
-// // Make sure to store this key securely
-// const PASSWORD = process.env.ENCRYPTION_PASSWORD || 'default-password';
-// const key = crypto.scryptSync(PASSWORD, 'salt', 32);
-
-// export function encrypt(text: string): string {
-//     const cipher = crypto.createCipheriv(algorithm, key, iv);
-//     let encrypted = cipher.update(text, 'utf8', 'hex');
-//     encrypted += cipher.final('hex');
-//     return iv.toString('hex') + ':' + encrypted;
-// }
-
-// export function decrypt(encryptedText: string): string {
-//     const [ivHex, content] = encryptedText.split(':');
-//     const decipher = crypto.createDecipheriv(algorithm, key, Buffer.from(ivHex, 'hex'));
-//     let decrypted = decipher.update(content, 'hex', 'utf8');
-//     decrypted += decipher.final('utf8');
-//     return decrypted;
-// }

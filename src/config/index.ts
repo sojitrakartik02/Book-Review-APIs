@@ -38,16 +38,8 @@ export const email = {
     EMAIL_PORT,
     GMAIL_APIKEY,
 
-
     EMAIL_SECURE,
 };
 
 
-export const aws = {
-    AWS_REGION: process.env.AWS_REGION,
-    AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
-    AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
-    S3_BUCKET_NAME: process.env.S3_BUCKET_NAME,
-    S3_BASE_URL: 'https://projectsphere-media.s3.ap-south-1.amazonaws.com',
-};
 export const APP_ROOT_DIR = process.env.NODE_ENV === "production" ? "dist" : "src";

@@ -10,7 +10,7 @@ import {
     hashToken,
     compareToken,
 } from '../../../utils/helpers/utilities.services';
-import { IUser, StatusEnum, TokenData } from '../../Auth/interfaces/auth.interface';
+import { IUser, StatusEnum } from '../../Auth/interfaces/auth.interface';
 import { Service } from 'typedi';
 import { HttpException } from '../../../utils/exceptions/httpException';
 import { sendOtpEmail } from '../../../utils/mail/mailer';
@@ -25,7 +25,7 @@ import {
     RESET_WINDOW_MINUTES,
     LOGIN_ATTEMPT,
     REFRESH_TOKEN_EXPIRY,
-    aws,
+
 } from '../../../config/index';
 import { status } from '../../../utils/helpers/api.responses';
 import { sign } from 'jsonwebtoken';
@@ -110,7 +110,7 @@ export class AuthService {
                 email: { $regex: new RegExp(`^${email}$`, 'i') },
                 isDeleted: false,
                 status: (StatusEnum.ACTIVE || StatusEnum.INACTIVE)
-            }).populate('roleId').populate('profileImage');
+            })
 
             if (!user) {
                 throw new HttpException(status.NotFound, t('General.invalid', { field: t('User.loginFailed') }));
@@ -187,6 +187,7 @@ export class AuthService {
                 refreshToken,
             };
         } catch (error) {
+            console.log(error)
             if (error instanceof HttpException) throw error;
 
             throw new HttpException(
@@ -443,7 +444,7 @@ export class AuthService {
     public async refreshAccessToken(refreshToken: string, t: TFunction): Promise<{ accessToken: string; refreshToken: string }> {
         try {
             const decoded = verifyJWT(refreshToken, t, REFRESH_TOKEN);
-            const user = await User.findById(decoded._id).populate('roleId');
+            const user = await User.findById(decoded._id)
 
             if (!user || !user.refreshToken || !user.sessionId) {
                 throw new HttpException(status.Unauthorized, t('General.invalid', { field: t('User.refreshToken') }));
