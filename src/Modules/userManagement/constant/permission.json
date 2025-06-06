@@ -1,0 +1,51 @@
+{
+  "CREATE_PROJECT": "create_project",
+  "EDIT_OWN_PROJECT": "edit_own_project",
+  "VIEW_OWN_PROJECTS": "view_own_projects",
+  "GRANT_PERMISSIONS": "grant_permissions",
+  "REVOKE_PERMISSIONS": "revoke_permissions",
+  "GRANT_PROJECT_PERMISSIONS": "grant_project_permissions",
+  "REVOKE_PROJECT_PERMISSIONS": "revoke_project_permissions",
+  "MANAGE_USERS": "manage_users",
+  "MANAGE_ROLES": "manage_roles",
+  "MANAGE_SYSTEM_SETTINGS": "manage_system_settings",
+  "MANAGE_PROJECT_MANAGERS": "manage_project_managers",
+  "VIEW_ALL_PROJECTS": "view_all_projects",
+  "EDIT_ANY_PROJECT": "edit_any_project",
+  "DELETE_PROJECTS": "delete_projects",
+  "ACTIVATE_DEACTIVATE_USERS": "activate_deactivate_users",
+  "INVITE_PROJECT_MANAGERS": "invite_project_managers",
+
+  "CREATE_DESIGN": "create_design",
+  "EDIT_OWN_DESIGN": "edit_own_design",
+  "VIEW_OWN_DESIGN": "view_own_design",
+
+  "CREATE_HTML_COMPONENTS": "create_html_components",
+  "EDIT_OWN_HTML_COMPONENTS": "edit_own_html_components",
+  "VIEW_OWN_HTML_COMPONENTS": "view_own_html_components",
+
+  "DEVELOP_FRONTEND": "develop_frontend",
+  "EDIT_OWN_FRONTEND": "edit_own_frontend",
+  "VIEW_OWN_FRONTEND": "view_own_frontend",
+
+  "DEVELOP_BACKEND": "develop_backend",
+  "EDIT_OWN_BACKEND": "edit_own_backend",
+  "VIEW_OWN_BACKEND": "view_own_backend",
+
+  "DEVELOP_FULL_STACK": "develop_full_stack",
+  "EDIT_OWN_FULL_STACK": "edit_own_full_stack",
+  "VIEW_OWN_FULL_STACK": "view_own_full_stack",
+
+  "CREATE_TESTS": "create_tests",
+  "EDIT_OWN_TESTS": "edit_own_tests",
+  "VIEW_OWN_TESTS": "view_own_tests",
+  "REPORT_BUGS": "report_bugs",
+
+  "VIEW_SALES_DATA": "view_sales_data",
+  "CONTACT_CLIENTS": "contact_clients",
+  "CLOSE_SALES": "close_sales",
+
+  "GATHER_REQUIREMENTS": "gather_requirements",
+  "CREATE_REQUIREMENTS_DOCS": "create_requirements_docs",
+  "MANAGE_REQUIREMENTS": "manage_requirements"
+}
